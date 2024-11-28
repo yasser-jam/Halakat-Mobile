@@ -9,6 +9,10 @@ useHead({
   }],
 })
 
+// Todo: fix that
+// change default color always to light
+color.preference = 'light'
+
 function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
 }
