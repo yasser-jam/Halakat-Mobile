@@ -16,6 +16,7 @@ function toggleDark() {
 
 <template>
   <button class="!outline-none" @click="toggleDark">
-    <div class="i-carbon-sun dark:i-carbon-moon" />
+    light
+    <div class="mdi:numeric dark:mdi:onepassword" />
   </button>
 </template>
