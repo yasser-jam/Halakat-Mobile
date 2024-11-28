@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+
+html, body {
+    font-family: 'Almarai', sans-serif;
+}
+
+.title {
+    @apply text-lg font-semibold mb-4
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.badge-primary, .badge-error, .badge-warning {
+  @apply text-white
+}
