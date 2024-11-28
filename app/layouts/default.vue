@@ -6,6 +6,7 @@
     <layout-nav />
 
     <div>
+      <dark-toggle class="hidden" />
       <NuxtPage />
     </div>
 
