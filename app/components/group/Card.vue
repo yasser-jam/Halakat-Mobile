@@ -9,17 +9,15 @@ defineProps<{
   <div class="flex items-center justify-between bg-white p-4">
     <div>
       <div class="text-xl font-bold">
-        حلقة الشجعان
-        <!-- {{ group.title }} -->
+        {{ group.title }}
       </div>
 
       <div class="mt-2 text-xs text-gray-400">
-        معاذ مستوتي
-        <!-- {{ teacherName }} -->
+        {{ teacherName }}
       </div>
 
       <div class="text-primary mt-4 flex items-center gap-2 text-xs">
-        <!-- <v-icon>mdi-account-multiple</v-icon> -->
+        <Icon name="mdi:account-multiple" />
         <div>الدورة الصيفية</div>
       </div>
     </div>

@@ -47,6 +47,13 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  runtimeConfig: {
+    public: {
+      // apiUrl: 'halakat-backend.vercel.app',
+      apiUrl: 'http://localhost:3002',
+    },
+  },
+
   devServer: {
     port: 9090,
   },

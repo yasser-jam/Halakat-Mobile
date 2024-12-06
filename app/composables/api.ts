@@ -1,18 +1,21 @@
 export default (url: string, options?: any) => {
-    
-    // const toasterStore = useToasterStore()
+  // const toasterStore = useToasterStore()
 
-    const config = useRuntimeConfig()
+  const config = useRuntimeConfig()
 
-    try {
-        const res = $fetch(`${config.public.apiUrl}/${url}`, {
-            ...options
-        })
+  const token = useCookie('halakat_mobile_access_token')
 
-        return res
+  try {
+    const res = $fetch(`${config.public.apiUrl}/${url}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+      ...options,
+    })
 
-    } catch (error) {
-        // toasterStore.error('حدث خطأ ما، يرجى إعادة المحاولة')
-    }
-
+    return res
+  }
+  catch (error) {
+    // toasterStore.error('حدث خطأ ما، يرجى إعادة المحاولة')
+  }
 }

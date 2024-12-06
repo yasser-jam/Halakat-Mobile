@@ -1,20 +1,46 @@
-export const useAuthStore = defineStore('auth' ,() => {
-    
-    const teacherStore = useTeacherStore()
+export const useAuthStore = defineStore('auth', () => {
+  const user = ref<Teacher>(initTeacher())
 
+  const token = useCookie('halakat_mobile_access_token')
 
-    const login = async (name: string, password: string) => {
-        // if (password != `${name}-123`) return
+  const studentStore = useStudentStore()
+  const teacherStore = useTeacherStore()
+  const groupStore = useGroupStore()
 
-        await teacherStore.list()
+  const login = async (phoneNumber: string, password: string) => {
+    const res = await api('auth/login', {
+      method: 'POST',
+      body: {
+        mobile_phone_number: phoneNumber,
+        password,
+      },
+    })
 
-        const { teacher, teachers } = storeToRefs(teacherStore)
+    token.value = res.access_token
 
-        teacher.value = teachers.value.find(t => `${t.first_name} ${t.last_name}` == name) || initTeacher()
+    user.value = res
+  }
 
-    }
-    
-    return {
-        login
-    }
+  const me = async () => {
+    const res = await api('auth/mobile/profile', {
+      method: 'POST',
+    })
+
+    // save value
+    const { teacher } = storeToRefs(teacherStore)
+
+    teacher.value = res
+
+    const { group } = storeToRefs(groupStore)
+
+    group.value = res.groups?.[0]
+
+    user.value = res
+  }
+
+  return {
+    login,
+    me,
+    user,
+  }
 })

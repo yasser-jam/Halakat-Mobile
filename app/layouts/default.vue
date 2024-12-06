@@ -1,10 +1,13 @@
 <script setup lang="ts">
+const authStore = useAuthStore()
+
+// get me
+useAsyncData(() => authStore.me())
 </script>
 
 <template>
   <main dir="rtl" class="bg-slate-50">
     <layout-nav />
-
     <div>
       <dark-toggle class="hidden" />
       <NuxtPage />

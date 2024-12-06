@@ -2,6 +2,10 @@
 const online = useOnline()
 
 const loading = ref(false)
+const groupStore = useGroupStore()
+const teacherStore = useTeacherStore()
+
+const { group } = storeToRefs(groupStore)
 </script>
 
 <template>
@@ -9,14 +13,14 @@ const loading = ref(false)
     <base-loader v-if="loading" />
 
     <template v-else>
-      <group-card />
+      <group-card :group :teacher-name="`${teacherStore.teacher.first_name} ${teacherStore.teacher.last_name}`" />
 
       <div class="title mt-8">
         الطلاب
       </div>
 
       <div class="max-h-[400px] overflow-auto">
-        <student-card v-for="i in 10" :key="i" class="mb-2" />
+        <student-card v-for="student in group.students" :key="student.id" :student class="mb-2" />
       </div>
     </template>
   </div>

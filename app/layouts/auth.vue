@@ -1,18 +1,15 @@
 <template>
-  <div class="flex justify-center items-center bg-primary h-[100vh]">
-    <v-container>
+  <div class="container">
+    <div class="bg-primary h-[100vh] flex flex-col items-center justify-center">
+      <div class="mb-4 flex flex-col items-center justify-center gap-2 text-center text-3xl text-white">
+        <Icon name="mdi:mosque" size="4rem" />
 
-        <div class="flex gap-2 justify-center items-center text-3xl text-white text-center mb-8">
-            <div>منصة حلقات</div>
+        <div>منصة حلقات</div>
+      </div>
 
-            <v-icon>mdi-mosque</v-icon>
-        </div>
-
-      <v-card>
-        <v-card-text>
-          <NuxtPage />
-        </v-card-text>
-      </v-card>
-    </v-container>
+      <div>
+        <NuxtPage />
+      </div>
+    </div>
   </div>
 </template>
