@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', () => {
       },
     })
 
-    token.value = res.access_token
+    token.value = res?.access_token
 
     user.value = res
   }
