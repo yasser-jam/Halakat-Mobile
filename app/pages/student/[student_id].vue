@@ -103,14 +103,23 @@
       معلومات الحفظ
     </div>
 
-    <div class="grid grid-cols-2 mb-12">
+    <div class="grid mb-12">
       <div class="flex items-center justify-between">
         <div class="mt-2 flex items-center gap-2">
           <div class="text-xs text-gray-500">
             الأجزاء المحفوظة
           </div>
-          <div class="badge badge-primary">
-            اسم الأب
+
+          <div class="flex gap-1">
+            <div class="badge badge-info text-white">
+              1
+            </div>
+            <div class="badge badge-info text-white">
+              2
+            </div>
+            <div class="badge badge-info text-white">
+              3
+            </div>
           </div>
         </div>
       </div>
@@ -120,8 +129,10 @@
           <div class="text-xs text-gray-500">
             الأجزاء المختبرة بالأوقاف
           </div>
-          <div class="badge badge-primary">
-            اسم الأب
+          <div class="flex gap-1">
+            <div class="badge badge-info text-white">
+              1
+            </div>
           </div>
         </div>
       </div>
@@ -131,14 +142,14 @@
       معلومات الدراسة
     </div>
 
-    <div class="grid grid-cols-2 mb-12">
+    <div class="grid mb-12">
       <div class="flex items-center justify-between">
         <div class="mt-2 flex items-center gap-2">
           <div class="text-xs text-gray-500">
             اسم المدرسة
           </div>
-          <div class="badge badge-primary">
-            اسم الأب
+          <div class="badge badge-neutral">
+            مدرسة الإمام الشافعي
           </div>
         </div>
       </div>
@@ -148,8 +159,8 @@
           <div class="text-xs text-gray-500">
             الصف
           </div>
-          <div class="badge badge-primary">
-            اسم الأب
+          <div class="badge badge-neutral">
+            {{ getClass(1) }}
           </div>
         </div>
       </div>
@@ -159,8 +170,9 @@
           <div class="text-xs text-gray-500">
             مواهب أخرى
           </div>
-          <div class="badge badge-primary">
-            اسم الأب
+
+          <div class="badge badge-neutral">
+            كرة القدم، الشعر
           </div>
         </div>
       </div>
