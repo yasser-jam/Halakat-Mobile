@@ -1,9 +1,27 @@
+<script setup lang="ts">
+const groupStore = useGroupStore()
+
+const { group } = storeToRefs(groupStore)
+
+const route = useRoute()
+
+const studentId = (route.params as any).student_id
+
+const student = computed(() => {
+  return group.value?.students?.find(el => el.id === Number(studentId))
+})
+</script>
+
 <template>
-  <div class="mx-auto p-8 container">
+  <div v-if="student" class="mx-auto p-8 container">
     <div class="mb-10 flex flex-col items-center justify-center">
-      <img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg" width="100" class="mb-2 rounded-full">
+      <div class="h-20 w-20 flex items-center justify-center rounded-full bg-slate-100">
+        <Icon v-if="!student.image_url" name="mdi:account" size="xxx-large" class="text-primary" />
+        <img v-else src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg" class="z-90">
+      </div>
+
       <div class="text-gray-700 font-semibold">
-        اسم الطالب
+        {{ `${student.first_name} ${student.last_name}` }}
       </div>
     </div>
 
@@ -18,7 +36,7 @@
             اسم الأب
           </div>
           <div class="badge badge-primary">
-            عباس العقاد
+            {{ `${student.father_name}` }}
           </div>
         </div>
       </div>
@@ -29,7 +47,7 @@
             حالة الأب
           </div>
           <div class="badge badge-primary">
-            موجود
+            {{ student.father_status }}
           </div>
         </div>
       </div>
@@ -40,7 +58,7 @@
             رقم هاتف الأب
           </div>
           <div class="badge badge-primary">
-            099344166
+            {{ student.father_phone_number }}
           </div>
         </div>
       </div>
@@ -51,7 +69,7 @@
             عمل الأب
           </div>
           <div class="badge badge-primary">
-            اسم الأب
+            {{ student.father_phone_number }}
           </div>
         </div>
       </div>
@@ -68,7 +86,7 @@
             اسم الأم
           </div>
           <div class="badge badge-error">
-            هنادي الملك
+            {{ student.mother_name }}
           </div>
         </div>
       </div>
@@ -79,7 +97,7 @@
             حالة الأم
           </div>
           <div class="badge badge-error">
-            موجود
+            {{ student.mother_status }}
           </div>
         </div>
       </div>
@@ -90,7 +108,7 @@
             رقم هاتف الأم
           </div>
           <div class="badge badge-error">
-            0945644687
+            {{ student.mother_phone_number }}
           </div>
         </div>
       </div>
@@ -101,7 +119,7 @@
             عمل الأم
           </div>
           <div class="badge badge-error">
-            مدرسة
+            {{ student.mother_job }}
           </div>
         </div>
       </div>
@@ -112,7 +130,7 @@
             حالة الزواج
           </div>
           <div class="badge badge-error">
-            متزوجان
+            {{ student.parent_marital_status }}
           </div>
         </div>
       </div>
@@ -129,16 +147,14 @@
             الأجزاء المحفوظة
           </div>
 
-          <div class="flex gap-1">
-            <div class="badge badge-info text-white">
-              1
+          <div v-if="student.preserved_parts" class="flex gap-1">
+            <div v-for="part in student.preserved_parts.split(',')" :key="part" class="badge badge-info text-white">
+              {{ part }}
             </div>
-            <div class="badge badge-info text-white">
-              2
-            </div>
-            <div class="badge badge-info text-white">
-              3
-            </div>
+          </div>
+
+          <div v-else class="badge badge-info text-white">
+            لا يوجد
           </div>
         </div>
       </div>
@@ -148,10 +164,14 @@
           <div class="text-xs text-gray-500">
             الأجزاء المختبرة بالأوقاف
           </div>
-          <div class="flex gap-1">
-            <div class="badge badge-info text-white">
-              1
+          <div v-if="student.parts_tested_by_the_endowments" class="flex gap-1">
+            <div v-for="part in student.parts_tested_by_the_endowments" :key="part" class="badge badge-info text-white">
+              {{ student.parts_tested_by_the_endowments }}
             </div>
+          </div>
+
+          <div v-else class="badge badge-info text-white">
+            لا يوجد
           </div>
         </div>
       </div>
@@ -168,7 +188,7 @@
             اسم المدرسة
           </div>
           <div class="badge badge-neutral">
-            مدرسة الإمام الشافعي
+            {{ student.school }}
           </div>
         </div>
       </div>
@@ -179,7 +199,7 @@
             الصف
           </div>
           <div class="badge badge-neutral">
-            {{ getClass(1) }}
+            {{ getClass(student.educational_class) }}
           </div>
         </div>
       </div>
@@ -191,10 +211,12 @@
           </div>
 
           <div class="badge badge-neutral">
-            كرة القدم، الشعر
+            {{ student.special_talent }}
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <base-not-found v-else />
 </template>
