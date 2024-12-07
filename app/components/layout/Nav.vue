@@ -18,7 +18,7 @@ async function refresh() {
 </script>
 
 <template>
-  <div class="navbar bg-base-100">
+  <div class="navbar bg-base-100 sticky top-0 z-90">
     <div class="flex-none">
       <button class="btn-square btn-ghost btn">
         <label for="my-drawer">
